@@ -9,7 +9,6 @@ const size = 40;//The size of each square
 function setup() {
   const canvas = createCanvas(cols * size + 2 * dwv, rows * size + 3 * dwh);  
   canvas.position(windowWidth / 2 - width / 2, windowHeight / 2 - height / 2);
-  background('#BCBCB2');
   createGrid();
 }
 
