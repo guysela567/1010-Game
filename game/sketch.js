@@ -17,7 +17,7 @@ function createGrid() {
   for (let i = 0; i < cols; i++) {
     grid[i] = [];
     for (let j = 0; j < rows; j++) {
-      grid[i][j] = new Cell(i * size + VERTICAL_WALL_DIST, j * size + HORIZONTAL_WALL_DIST, 38);
+      grid[i][j] = new Cell(i * size + VERTICAL_WALL_DIST, j * size + HORIZONTAL_WALL_DIST, 38, '#323232');
     }
   }
 }

@@ -1,9 +1,9 @@
 class Cell {
-    constructor(x, y, size) {
+    constructor(x, y, size, color) {
       this.x = x;
       this.y = y;
       this.size = size;
-      this.color = '#323232';
+      this.color = color;
     }
   
     show() {
