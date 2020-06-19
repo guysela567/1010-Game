@@ -1,23 +1,81 @@
+// minimum and maximum amount of cells for lines of a shapes
+const minLineAmount = 2;
+const maxLineAmount = 3;
+
 const SHAPES = {
-    "circle": createCircleShape(),
-    "vertical_line": createVecticalLineShape(),
-    "horizontal_line": createHorizontalLine(),
-    "L": createLShape()
+    // each shape has an array of vectors, setting the location of each cell in the shape
+
+    "rectangle": () => {
+        let arr = [];
+        const amount = getRandomAmount();
+
+        for (let y = 0; y < amount; y++) {
+            for (let x = 0; x < amount; x++) {
+              arr.push({x, y});
+            }
+        }
+    
+        return arr;
+    },
+
+    "vertical_line": () => {
+        let arr = [];
+        const amount = getRandomAmount();
+
+        for (let y = 0; y < amount; y++) {
+           arr.push({x: 0, y});
+        }
+
+        return arr;
+    },
+
+    "horizontal_line": () => {
+        let arr = [];
+        const amount = getRandomAmount();
+
+        for (let x = 0; x < amount; x++) {
+            arr.push({x, y: 0});
+        }
+
+        return arr;
+    },
+
+    "L": () => {
+        let arr = [];
+        const xAmount = getRandomAmount();
+        const yAmount = getRandomAmount();
+
+        // vertical line
+        for (let y = 0; y < yAmount; y++) {
+            arr.push({y, x: 0});
+        }
+
+        // horizontal line
+        for (let x = 1; x < xAmount; x++) {
+            arr.push({y: yAmount - 1, x});
+        }
+
+        return arr;
+    },
+
+    "dot": () => {
+        return [{x: 0, y: 0}]
+    }
 }
 
 class Shape {
     constructor(x, y, type, color) {
         this.x = x;
         this.y = y;
-        this.tiles = SHAPES[type];
+        this.tiles = SHAPES[type]();
         this.color = color;
-
+        
         this.cells = this.tiles.map(val => new Cell(
             this.x + val.x * (size + cellPadding),
             this.y + val.y * (size + cellPadding),
             size,
             this.color
-            ));
+        ));
     }
 
     show() {
@@ -28,49 +86,7 @@ class Shape {
 }
 
 
-function createCircleShape() {
-    let arr = [];
 
-    for (let y = 0; y < 3; y++) {
-        for (let x = 0; x < 3; x++) {
-            arr.push({x, y});
-        }
-    }
-    
-    return arr;
-}
-
-function createVecticalLineShape() {
-    let arr = [];
-
-    for (let y = 0; y < 3; y++) {
-        arr.push({x: 0, y});
-    }
-
-    return arr;
-}
-
-
-function createHorizontalLine() {
-    let arr = [];
-
-    for (let x = 0; x < 3; x++) {
-        arr.push({x, y: 0});
-    }
-
-    return arr;
-}
-
-
-function createLShape() {
-    let arr = [];
-
-    for (let y = 0; y < 3; y++) {
-        arr.push({y, x: 0});
-    }
-    for (let x = 1; x <= 2; x++) {
-        arr.push({y: 2, x});
-    }
-
-    return arr;
+function getRandomAmount() {
+    return Math.round(Math.random() * (maxLineAmount - minLineAmount)) + minLineAmount;
 }
