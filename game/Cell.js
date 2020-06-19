@@ -2,7 +2,7 @@ class Cell {
 
     constructor(x, y, r, c) {
       this.x = x;
-      this.y = y
+      this.y = y;
       this.r = r;
       this.c = c;
     }
