@@ -1,5 +1,4 @@
 class Cell {
-
     constructor(x, y, size, c) {
       this.x = x;
       this.y = y;
