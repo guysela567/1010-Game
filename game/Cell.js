@@ -1,13 +1,13 @@
 class Cell {
-    constructor(x, y, size, Color) {
+    constructor(x, y, size) {
       this.x = x;
       this.y = y;
       this.size = size;
-      this.Color = Color;
+      this.color = '#323232';
     }
   
     show() {
-      fill(this.Color);
+      fill(this.color);
       noStroke();
       rect(this.x, this.y, this.size, this.size, 5);
     }
