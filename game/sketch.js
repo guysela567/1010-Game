@@ -2,19 +2,24 @@
 let grid = [];
 const cols = 10;
 const rows = 10;
-const VERTICAL_WALL_DIST = 75;//Distance from vertical wall 
-const HORIZONTAL_WALL_DIST = 150;//Distance from horizontal wall
+const VERTICAL_WALL_DIST = 75;//Distance from vertical wall to grid top row
+const HORIZONTAL_WALL_DIST = 150;//Distance from horizontal wall and grid left column
 const size = 40;//The size of each square
-const cellPadding = 2;//Distance between every cell
-const borderY = HORIZONTAL_WALL_DIST * 1.5 + size * rows;//Y border between grid and shapes
+const cellPadding = 2;//Distance between each cell to another
+const borderY = HORIZONTAL_WALL_DIST * 1.5 + (size + cellPadding) * rows;//Y border between grid and shapes
 
 let shapes = [];
  
 function setup() {
-  const canvas = createCanvas(cols * size + 2 * VERTICAL_WALL_DIST, rows * size + 3 * HORIZONTAL_WALL_DIST);  
+  // setting the canvas
+  const canvas = createCanvas(
+    cols * (size + cellPadding) + 2 * VERTICAL_WALL_DIST,
+    rows * (size + cellPadding) + 3 * HORIZONTAL_WALL_DIST
+  );  
   canvas.position(windowWidth / 2 - width / 2, windowHeight / 2 - height / 2);
   createGrid();
 
+  // setting the shapes array
   for (let i = 0; i < 3; i++) {
     shapes.push(new Shape(
       i * width / 3 + 25, 
@@ -41,7 +46,14 @@ function createGrid() {
 
 function draw() {
   background('#BCBCB2');
+
+  // draw grid
   drawGrid();
+
+  // draw shapes
+  for (let shape of shapes) {
+    shape.show();
+  }
 }
 
 function drawGrid() {
@@ -55,8 +67,4 @@ function drawGrid() {
 
   // border line
   rect(0, borderY, width, 10);
-
-  for (let shape of shapes) {
-    shape.show();
-  }
 }
