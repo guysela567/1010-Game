@@ -38,7 +38,6 @@ function createGrid() {
       grid[i][j] = new Cell(
         i * size + VERTICAL_WALL_DIST + i * cellPadding, 
         j * size + HORIZONTAL_WALL_DIST + j * cellPadding, 
-        size, 
         '#323232');
     }
   }

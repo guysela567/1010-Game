@@ -73,7 +73,6 @@ class Shape {
         this.cells = this.tiles.map(val => new Cell(
             this.x + val.x * (size + cellPadding),
             this.y + val.y * (size + cellPadding),
-            size,
             this.color
         ));
     }
