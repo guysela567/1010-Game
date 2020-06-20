@@ -1,4 +1,4 @@
-// minimum and maximum amount of cells for lines of a shapes
+// minimum and maximum amount of cells for each line in the shapes
 const minLineAmount = 2;
 const maxLineAmount = 3;
 
@@ -7,10 +7,11 @@ const SHAPES = {
 
     "rectangle": () => {
         let arr = [];
-        const amount = getRandomAmount();
+        const yAmount = getRandomAmount();
+        const xAmount = getRandomAmount();
 
-        for (let y = 0; y < amount; y++) {
-            for (let x = 0; x < amount; x++) {
+        for (let y = 0; y < yAmount; y++) {
+            for (let x = 0; x < xAmount; x++) {
               arr.push({x, y});
             }
         }
@@ -58,15 +59,14 @@ const SHAPES = {
         return arr;
     },
 
-    "dot": () => {
-        return [{x: 0, y: 0}];
-    }
+    "dot": () => [{x: 0, y: 0}]
 }
 
 class Shape {
     constructor(x, y, type, color) {
         this.x = x;
         this.y = y;
+        this.type = type;
         this.tiles = SHAPES[type]();
         this.color = color;
         
