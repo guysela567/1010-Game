@@ -21,6 +21,7 @@ function setup() {
 
   // creating the grid
   createGrid();
+  tryAddToGrid(grid, 1, 2, shapes[0]);
 
   // setting the shapes array
   for (let i = 0; i < 3; i++) {
@@ -54,6 +55,7 @@ function draw() {
   drawGrid();
   
   // border line
+  fill('#323232');
   rect(0, borderY, width, 10);
 
   // draw shapes
@@ -69,5 +71,4 @@ function drawGrid() {
       grid[i][j].show();
     }
   }
-  fill('#323232');
 }
