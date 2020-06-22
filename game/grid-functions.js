@@ -3,6 +3,7 @@ function tryAddToGrid(grid, x, y, shape) {
         addShape(grid, x, y, shape);
         return true;
     }
+    
     return false;
 }
 
