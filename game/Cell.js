@@ -8,8 +8,9 @@ class Cell {
   
     show() {
       fill(this.color);
-      noStroke();
+      stroke(0);
       rect(this.x, this.y, size, size, 5);
+      noStroke();
     }
 
     mouseHover() {
