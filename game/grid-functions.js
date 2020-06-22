@@ -83,14 +83,14 @@ function removeLines(grid) {
     for (let x = 0; x < cols; x++) {
         for (let y of Ys) {
             grid[x][y].isEmpty = true;
-            grid[x][y].color = 'black';
+            grid[x][y].color = '#323232';
         }
     }
     // rows
     for (let y = 0; y < cols; y++) {
         for (let x of Xs) {
             grid[x][y].isEmpty = true;
-            grid[x][y].color = 'black';
+            grid[x][y].color = '#323232';
         }
     }
 
