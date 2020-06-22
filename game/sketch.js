@@ -58,15 +58,13 @@ function createGrid() {
 
 function draw() {
   background('#BCBCB2');
-
-  // draw grid
-  drawGrid();
-  
-  scoreBoard();
-
   // border line
   fill('#323232');
   rect(0, borderY, width, 10);
+
+  drawGrid();
+  
+  scoreBoard();
 
   drawShape();
 }
@@ -87,7 +85,7 @@ function drawShape(){
 }
 
 function drawGrid() {
-  // draw every cell in the grid array 
+  // draw grid
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j].show();
