@@ -3,6 +3,8 @@ class Cell {
       this.x = x;
       this.y = y;
       this.color = color;
+      this.isEmpty = true;
+      this.shapeCol;
     }
   
     show() {
