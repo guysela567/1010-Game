@@ -11,7 +11,10 @@ const borderY = HORIZONTAL_WALL_DIST * 1.5 + (size + cellPadding) * rows;//Y bor
 let shapes = [];
 const possibleShapes = Object.keys(SHAPES);//Array containing all possible shape types
 let draggingShape = false;
- 
+
+let score = 0; 
+let highScore = 0;
+
 function setup() {
   // setting the canvas dimensions and position
   const canvas = createCanvas(
@@ -24,6 +27,10 @@ function setup() {
   // creating the grid
   createGrid();
 
+  pickShape();
+}
+
+function pickShape(){
   // setting the shapes array
   for (let i = 0; i < 3; i++) {
     shapes.push(new Shape(
@@ -55,10 +62,16 @@ function draw() {
   // draw grid
   drawGrid();
   
+  scoreBoard();
+
   // border line
   fill('#323232');
   rect(0, borderY, width, 10);
 
+  drawShape();
+}
+
+function drawShape(){
   // draw shapes
   for (let i = shapes.length - 1; i >= 0; i--) {
     if (shapes[i].toBeRemoved) {
@@ -67,6 +80,9 @@ function draw() {
       shapes[i].update();
       shapes[i].show();
     }
+  }
+  if(shapes.length == 0){
+    pickShape();
   }
 }
 
@@ -77,4 +93,14 @@ function drawGrid() {
       grid[i][j].show();
     }
   }
+}
+
+function scoreBoard(){
+    textSize(64);
+    textAlign(CENTER, CENTER);
+    textFont("Comic Sans MS");
+    fill('#5AAED4');
+    text(score, width/2 - 85, 70);
+    fill('#089000');
+    text(highScore, width/2 + 85, 70);
 }
