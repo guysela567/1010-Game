@@ -127,18 +127,25 @@ class Shape {
             this.yOff = 0;
 
             // Add shape to grid at the location of the mouse
-            for (let y = 0; y < cols; y++) {
-                for (let x = 0; x < rows; x++) {
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
                     if (grid[x][y].mouseHover()) {
                         if (tryAddToGrid(grid, x - this.brickXOff, y - this.brickYOff, this)) {
                             // remove shape from array
                             this.toBeRemoved = true;
                         } else {
+                            // return to default place if shape can't be put
                             this.returnToPlace();
                         }
                     }
                 }
             }
+
+            // return to default place if isn't to be removed from the array
+            if (!this.toBeRemoved) {
+                this.returnToPlace();
+            }
+
         } else {
 
             // snap shape to position
@@ -159,7 +166,8 @@ class Shape {
     }
 
     returnToPlace() {
-
+        this.x = this.defaultX;
+        this.y = this.defaultY;
     }
 }
 
