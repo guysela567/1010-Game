@@ -12,7 +12,7 @@ class Cell {
     }
 
     mouseHover() {
-      return mouseX > this.x && mouseX < this.x + this.size
-      && mouseY > this.y && mouseY < this.y + this.size
+      return mouseX > this.x && mouseX < this.x + size
+      && mouseY > this.y && mouseY < this.y + size
     }
   }

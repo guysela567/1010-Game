@@ -75,11 +75,60 @@ class Shape {
             this.y + val.y * (size + cellPadding),
             this.color
         ));
+
+        this.xOff = 0;
+        this.yOff = 0;
+        this.dragging = false;
     }
 
     show() {
         for (let cell of this.cells) {
             cell.show();
+        }
+    }
+
+    update() {
+
+        if (!this.dragging) {
+            if (draggingShape) {
+                return;
+            }
+            for (let cell of this.cells) {
+                if (cell.mouseHover() && mouseIsPressed) {
+                    this.dragging = true;
+                    draggingShape = true;
+                    console.log('drag');
+
+                    // set offset
+                    this.xOff = mouseX - this.x;
+                    this.yOff = mouseY - this.y;
+                    console.log(this.xOff, this.yOff);
+                    break;
+                }
+            }
+        } else if (!mouseIsPressed) {
+            this.dragging = false;
+            draggingShape = false;
+
+            // reset offset
+            this.xOff = 0;
+            this.yOff = 0;
+        } else {
+
+            // snap shape to position
+            this.x = mouseX - this.xOff;
+            this.y = mouseY - this.yOff;
+        }
+
+        // constrain position
+        this.x = constrain(this.x, 0, width - size);
+        this.y = constrain(this.y, 0, height - size);
+
+        // snap cells to shape's position
+        for (let i = 0; i < this.cells.length; i++) {
+            const cell = this.cells[i];
+            cell.x = this.x + this.tiles[i].x * (size + cellPadding);
+            cell.y = this.y + this.tiles[i].y * (size + cellPadding);
         }
     }
 }

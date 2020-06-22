@@ -10,6 +10,7 @@ const borderY = HORIZONTAL_WALL_DIST * 1.5 + (size + cellPadding) * rows;//Y bor
 
 let shapes = [];
 const possibleShapes = Object.keys(SHAPES);//Array containing all possible shape types
+let draggingShape = false;
  
 function setup() {
   // setting the canvas dimensions and position
@@ -58,6 +59,7 @@ function draw() {
 
   // draw shapes
   for (let shape of shapes) {
+    shape.update();
     shape.show();
   }
 }
