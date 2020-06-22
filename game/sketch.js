@@ -70,12 +70,12 @@ function draw() {
   
   scoreBoard();
 
-  drawShape();
-
   if(!SuitableSshape()){
     console.log("fail");
     noLoop();
   }
+
+  drawShape();
 }
 
 function drawShape(){
