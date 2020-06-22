@@ -15,6 +15,9 @@ let draggingShape = false;
 let score = 0; 
 let highScore = 0;
 
+const COLORS = ['#4dd5ad', '#ffc63e', '#5dbde4', '#61c488', '#dc6555'];
+const DEFAULT__GRID_COLOR = '#323232';
+
 function setup() {
   // setting the canvas dimensions and position
   const canvas = createCanvas(
@@ -37,7 +40,7 @@ function pickShape(){
       i * width / 3 + 25, 
       borderY + (height - borderY) / 4, 
       random(possibleShapes), 
-      color(255, 0, 0)
+      random(COLORS)
     ));
   }
 }
@@ -50,14 +53,15 @@ function createGrid() {
       grid[i][j] = new Cell(
         i * size + VERTICAL_WALL_DIST + i * cellPadding, 
         j * size + HORIZONTAL_WALL_DIST + j * cellPadding, 
-        '#323232'
+        DEFAULT__GRID_COLOR
       );
     }
   }
 }
 
 function draw() {
-  background('#BCBCB2');
+  // background('#BCBCB2');
+  background(200);
   // border line
   fill('#323232');
   rect(0, borderY, width, 10);
@@ -79,7 +83,7 @@ function drawShape(){
       shapes[i].show();
     }
   }
-  if(shapes.length == 0){
+  if (shapes.length == 0) {
     pickShape();
   }
 }

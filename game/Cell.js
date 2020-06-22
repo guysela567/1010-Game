@@ -9,7 +9,6 @@ class Cell {
     show() {
       fill(this.color);
       noStroke();
-      // stroke(this.color);
       rect(this.x, this.y, size, size, 5);
     }
 
