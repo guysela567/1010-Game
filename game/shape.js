@@ -66,6 +66,10 @@ class Shape {
     constructor(x, y, type, color) {
         this.x = x;
         this.y = y;
+
+        this.defaultX = x;
+        this.defaultY = y;
+
         this.type = type;
         this.tiles = SHAPES[type]();
         this.color = color;
@@ -78,7 +82,12 @@ class Shape {
 
         this.xOff = 0;
         this.yOff = 0;
+
+        this.brickXOff = 0;
+        this.brickYOff = 0;
+        
         this.dragging = false;
+        this.toBeRemoved = false;
     }
 
     show() {
@@ -90,29 +99,46 @@ class Shape {
     update() {
 
         if (!this.dragging) {
+
             if (draggingShape) {
                 return;
             }
-            for (let cell of this.cells) {
-                if (cell.mouseHover() && mouseIsPressed) {
+
+            for (let i = 0; i < this.cells.length; i++) {
+                if (this.cells[i].mouseHover() && mouseIsPressed) {
                     this.dragging = true;
                     draggingShape = true;
-                    console.log('drag');
 
                     // set offset
                     this.xOff = mouseX - this.x;
                     this.yOff = mouseY - this.y;
-                    console.log(this.xOff, this.yOff);
+                    this.brickXOff = this.tiles[i].x;
+                    this.brickYOff = this.tiles[i].y;
                     break;
                 }
             }
         } else if (!mouseIsPressed) {
+            // end of drag
             this.dragging = false;
             draggingShape = false;
 
             // reset offset
             this.xOff = 0;
             this.yOff = 0;
+
+            // Add shape to grid at the location of the mouse
+            for (let y = 0; y < cols; y++) {
+                for (let x = 0; x < rows; x++) {
+                    if (grid[x][y].mouseHover()) {
+                        if (tryAddToGrid(grid, x - this.brickXOff, y - this.brickYOff, this)) {
+                            // remove shape from array
+                            this.toBeRemoved = true;
+                        } else {
+                            this.returnToPlace();
+                        }
+                    }
+                }
+            }
         } else {
 
             // snap shape to position
@@ -130,6 +156,10 @@ class Shape {
             cell.x = this.x + this.tiles[i].x * (size + cellPadding);
             cell.y = this.y + this.tiles[i].y * (size + cellPadding);
         }
+    }
+
+    returnToPlace() {
+
     }
 }
 

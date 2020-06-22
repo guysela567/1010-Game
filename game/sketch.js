@@ -20,9 +20,9 @@ function setup() {
   );  
   canvas.position(windowWidth / 2 - width / 2, windowHeight / 2 - height / 2);
 
- /*// creating the grid
+    
+  // creating the grid
   createGrid();
-  tryAddToGrid(grid, 1, 2, shapes[0]);*/
 
   // setting the shapes array
   for (let i = 0; i < 3; i++) {
@@ -33,10 +33,6 @@ function setup() {
       color(255, 0, 0)
     ));
   }
-
-  // creating the grid
-  createGrid();
-  tryAddToGrid(grid, 9, 0, shapes[0]);
 }
 
 function createGrid() {
@@ -64,9 +60,13 @@ function draw() {
   rect(0, borderY, width, 10);
 
   // draw shapes
-  for (let shape of shapes) {
-    shape.update();
-    shape.show();
+  for (let i = shapes.length - 1; i >= 0; i--) {
+    if (shapes[i].toBeRemoved) {
+      shapes.splice(i, 1);
+    } else {
+      shapes[i].update();
+      shapes[i].show();
+    }
   }
 }
 

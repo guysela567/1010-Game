@@ -4,17 +4,17 @@ class Cell {
       this.y = y;
       this.color = color;
       this.isEmpty = true;
-      this.shapeCol;
     }
   
     show() {
       fill(this.color);
       noStroke();
+      // stroke(this.color);
       rect(this.x, this.y, size, size, 5);
     }
 
     mouseHover() {
-      return mouseX > this.x && mouseX < this.x + size
-      && mouseY > this.y && mouseY < this.y + size
+      return mouseX > this.x - cellPadding / 2 && mouseX < this.x + size + cellPadding / 2
+      && mouseY > this.y - cellPadding / 2 && mouseY < this.y + size + cellPadding / 2
     }
   }
