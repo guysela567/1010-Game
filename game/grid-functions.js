@@ -29,3 +29,71 @@ function addShape(grid, x, y, shape) {
         chosenTile.color = shape.color;
     }
 }
+
+
+function getFullRows(grid) {
+    let canRemove;
+    let Ys = [];
+
+    // rows check
+    for (let y = 0; y < rows; y++) {
+        canRemove = true;
+
+        // check all Xs in the line
+        for (let x = 0; x < cols; x++) {
+            if (grid[x][y].isEmpty) {
+                canRemove = false;
+            }
+        }
+
+        if (canRemove) {
+            Ys.push(y);
+        }
+    }
+
+    return Ys;
+}
+
+
+function transposeGrid(grid) {
+    let arr = [];
+    for (let i = 0; i < cols; i++) {
+        arr[i] = [];
+        for (let j = 0; j < rows; j++) {
+            arr[i][j] = grid[j][i];
+        }
+    }
+
+    return arr;
+}
+
+
+function removeLines(grid) {
+    // get Ys
+    let Ys = getFullRows(grid);
+    grid = transposeGrid(grid);
+
+    // get Xs
+    let Xs = getFullRows(grid);
+    grid = transposeGrid(grid);
+
+    // remove:
+
+    // columns
+    for (let x = 0; x < cols; x++) {
+        for (let y of Ys) {
+            grid[x][y].isEmpty = true;
+            grid[x][y].color = 'black';
+        }
+    }
+    // rows
+    for (let y = 0; y < cols; y++) {
+        for (let x of Xs) {
+            grid[x][y].isEmpty = true;
+            grid[x][y].color = 'black';
+        }
+    }
+
+    score += (Ys.length + Xs.length) * 10;
+    highScore = max(score, highScore);
+}
