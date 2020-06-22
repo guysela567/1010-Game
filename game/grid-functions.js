@@ -97,3 +97,16 @@ function removeLines(grid) {
     score += (Ys.length + Xs.length) * 10;
     highScore = max(score, highScore);
 }
+
+function there_more_space(grid, shape){
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            if(grid[x][y].isEmpty){
+                if(isShapeFit(grid, x, y, shape)){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

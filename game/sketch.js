@@ -71,6 +71,11 @@ function draw() {
   scoreBoard();
 
   drawShape();
+
+  if(!SuitableSshape()){
+    console.log("fail");
+    noLoop();
+  }
 }
 
 function drawShape(){
@@ -105,4 +110,13 @@ function scoreBoard(){
     text(score, width/2 - 85, 70);
     fill('#089000');
     text(highScore, width/2 + 85, 70);
+}
+
+function SuitableSshape(){
+  for (let i = 0; i < shapes.length; i++) {
+    if(there_more_space(grid, shapes[i])){
+      return true;
+    }
+  }
+  return false;
 }
