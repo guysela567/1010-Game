@@ -133,8 +133,13 @@ class Shape {
                         if (tryAddToGrid(grid, x - this.brickXOff, y - this.brickYOff, this)) {
                             // remove shape from array
                             this.toBeRemoved = true;
+
+                            score += this.cells.length;
+                            highScore = Math.max(score,highScore);
+                          
                             // check if line is completed
                             removeLines(grid);
+                          
                         } else {
                             // return to default place if shape can't be put
                             this.returnToPlace();
