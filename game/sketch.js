@@ -19,9 +19,9 @@ function setup() {
   );  
   canvas.position(windowWidth / 2 - width / 2, windowHeight / 2 - height / 2);
 
-  // creating the grid
+ /*// creating the grid
   createGrid();
-  tryAddToGrid(grid, 1, 2, shapes[0]);
+  tryAddToGrid(grid, 1, 2, shapes[0]);*/
 
   // setting the shapes array
   for (let i = 0; i < 3; i++) {
@@ -32,6 +32,10 @@ function setup() {
       color(255, 0, 0)
     ));
   }
+
+  // creating the grid
+  createGrid();
+  tryAddToGrid(grid, 9, 0, shapes[0]);
 }
 
 function createGrid() {
