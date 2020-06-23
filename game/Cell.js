@@ -35,7 +35,7 @@ class Cell {
 
   shrink() {
     // continue only if there's a shape on the cell
-    if (this.isEmpty = false) {
+    if (this.color != DEFAULT__GRID_COLOR) {
       this.shrinking = true;
       this.prevCol = this.color;
       this.color = DEFAULT__GRID_COLOR;
