@@ -70,7 +70,8 @@ function draw() {
 
   scoreBoard();
 
-  if (!SuitableSshape()) {
+  if (!SuitableShape() && shapes.length > 1) {
+    console.log(shapes.length);
     console.log("fail");
     noLoop();
   }
@@ -112,7 +113,7 @@ function scoreBoard() {
   text(highScore, width / 2 + 85, 70);
 }
 
-function SuitableSshape() {
+function SuitableShape() {
   for (let i = 0; i < shapes.length; i++) {
     if (there_more_space(grid, shapes[i])) {
       return true;
