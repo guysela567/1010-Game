@@ -52,7 +52,7 @@ class Cell {
           this.onTopSize = size;
           clearInterval(interval);
         }
-      }, 1);
+      }, this.animSpeed);
     }
   }
 }
