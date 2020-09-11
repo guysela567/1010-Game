@@ -84,27 +84,19 @@ function removeLines(grid) {
   let indexY = 0;
   let colsInterval = setInterval(() => {
     if (indexY < rows) {
-      for (let x of Xs) {
-        grid[x][indexY].shrink();
-        indexY++;
-      }
-    } else {
-      clearInterval(colsInterval);
-    }
+      for (let x of Xs) grid[x][indexY].shrink();
+    } else clearInterval(colsInterval);
+    indexY++;
   }, REMOVE_ANIM_SPEED);
 
   // rows
   let indexX = 0;
-  for (let y of Ys) {
-    let rowsInterval = setInterval(() => {
-      if (indexX < cols) {
-        grid[indexX][y].shrink();
-        indexX++;
-      } else {
-        clearInterval(rowsInterval);
-      }
-    }, REMOVE_ANIM_SPEED);
-  }
+  let rowsInterval = setInterval(() => {
+    if (indexX < cols) {
+      for (let y of Ys) grid[indexX][y].shrink();
+      indexX++;
+    } else clearInterval(rowsInterval);
+  }, REMOVE_ANIM_SPEED);
 
   score += (Ys.length + Xs.length) * 10;
   highScore = max(score, highScore);
